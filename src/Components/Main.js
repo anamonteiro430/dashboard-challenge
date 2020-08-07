@@ -1,8 +1,8 @@
 import React from 'react';
 import { TableInfo } from './TableInfo';
 
-export const Main = () => {
-  const table_data = [
+export const Main = (props) => {
+  const table = [
     {
       id: 1,
       name: 'País',
@@ -23,10 +23,9 @@ export const Main = () => {
       ],
     },
   ];
-
   return (
     <div id="main">
-      {table_data.map((table) => (
+      {table.map((table) => (
         <TableInfo table={table} />
       ))}
     </div>
