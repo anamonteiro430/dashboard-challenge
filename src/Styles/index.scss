@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Roboto Condensed';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -28,5 +28,47 @@ nav {
   }
 }
 
-.App {
+#search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5vh;
+
+  input {
+    width: 50vw;
+    height: 4vh;
+    border: 1px solid #dbd7d7;
+  }
+}
+
+#main {
+  width: 70vw;
+  margin-top: 10vh;
+  margin-left: 15vw;
+}
+
+#table_info {
+  border: 1px solid #b6b3b3;
+  display: flex;
+
+  justify-content: space-between;
+  margin-top: 5vh;
+
+  h2 {
+    margin-left: 15px;
+  }
+
+  .fields {
+    display: flex;
+
+    p {
+      padding: 5px;
+      margin-left: 15px;
+    }
+  }
+
+  &:hover {
+    border: 1px solid #525151;
+    cursor: pointer;
+  }
 }
