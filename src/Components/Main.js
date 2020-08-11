@@ -1,32 +1,23 @@
-import React from 'react';
-import { TableInfo } from './TableInfo';
+import React, { useReducer } from 'react';
+import { reducer, initialState } from './../Reducers/index';
+import { useHistory } from 'react-router-dom';
 
-export const Main = (props) => {
-  const table = [
-    {
-      id: 1,
-      name: 'País',
-      fields: [
-        'Nome',
-        'Acrónimo (ISO 3166)',
-        'Taxa de mortalidade (mortes/ano/1000 habitantes)',
-      ],
-    },
-    {
-      id: 2,
-      name: 'Tipos de Veículo',
-      fields: [
-        'Nome',
-        'Nº de Portas',
-        'Potência Mínima (CV)',
-        'Potência Máxima (CV)',
-      ],
-    },
-  ];
+export const Main = () => {
+  let history = useHistory();
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  console.log('MAINn');
   return (
     <div id="main">
-      {table.map((table) => (
-        <TableInfo table={table} />
+      {state.tables.map((table) => (
+        <div id="table_info" onClick={() => history.push(`/table/${table.id}`)}>
+          <h1>{table.name}</h1>
+          <div class="fields">
+            {table.fields.map((field) => (
+              <p>{field.field}</p>
+            ))}
+          </div>
+        </div>
       ))}
     </div>
   );
