@@ -11,7 +11,7 @@ export const Main = () => {
       {state.tables.map((table) => (
         <div id="table_info" onClick={() => history.push(`/table/${table.id}`)}>
           <h1>{table.name}</h1>
-          <div class="fields">
+          <div className="fields">
             {table.fields.map((field) => (
               <p>{field.field}</p>
             ))}

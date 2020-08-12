@@ -26,13 +26,13 @@ export const Table = () => {
   };
 
   return (
-    <div class="table_wrapper">
+    <div className="table_wrapper">
       {state.edit ? null : (
         <button className="backBtn" onClick={() => history.push('/')}>
           All Tables
         </button>
       )}
-      <div class="table-action">
+      <div className="table-action">
         {/* table information and buttons */}
         <h1>{state.table.name}</h1>
         {state.edit ? (
@@ -84,12 +84,12 @@ export const Table = () => {
       </div>
       {/* table header and fields*/}
       <div id="table">
-        <div class="table-header">
+        <div className="table-header">
           {state.edit
             ? state.table.fields.map((field) =>
                 field.field === 'Created' ? null : (
                   <div
-                    class="table-header-class"
+                    className="table-header-class"
                     style={{
                       width: `${state.input}vw`,
                     }}
@@ -100,14 +100,14 @@ export const Table = () => {
                 )
               )
             : state.table.fields.map((field) => (
-                <div class="table-header-class">
+                <div className="table-header-class">
                   <h3>{field.field}</h3>
                   <p>{field.subfield}</p>
                 </div>
               ))}
         </div>
         {/* table rows */}
-        <div class="table-rows">
+        <div className="table-rows">
           {state.edit ? (
             /* EDITING TABLE*/
             <div>
