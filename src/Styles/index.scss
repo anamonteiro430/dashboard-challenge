@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 
+/* COLORS */
 $mainColor: #690e0e;
 $lightGrey: #dbd7d7;
 $darkGrey: #b6b3b3;
 $darkerGrey: #525151;
 $green: #4d8c2b;
+
 body {
   margin: 0;
   font-family: 'Roboto Condensed';
@@ -24,23 +26,9 @@ nav {
   justify-content: flex-start;
   align-items: center;
 
-  p {
+  h1 {
     color: white;
-    font-size: 1.6em;
     margin-left: 5vw;
-  }
-}
-
-#search {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5vh;
-
-  input {
-    width: 50vw;
-    height: 4vh;
-    border: 1px solid $lightGrey;
   }
 }
 
@@ -83,6 +71,24 @@ nav {
   flex-direction: column;
   margin-top: 10vh;
 
+  .backBtn {
+    border: 2px solid $mainColor;
+    color: $darkerGrey;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    background-color: white;
+    margin-left: 2vw;
+    text-decoration: underline;
+
+    &:hover {
+      background-color: $mainColor;
+      cursor: pointer;
+      color: white;
+    }
+  }
+
   .table-action {
     display: flex;
     width: 60vw;
@@ -92,6 +98,59 @@ nav {
     .button-wrapper {
       display: flex;
       align-items: center;
+
+      .confirmBtn {
+        border: 1px solid $lightGrey;
+        color: $darkerGrey;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        background-color: $lightGrey;
+        margin-left: 2vw;
+
+        &:hover {
+          background-color: $green;
+          cursor: pointer;
+          color: white;
+        }
+      }
+
+      .discardBtn {
+        border: 1px solid $lightGrey;
+        color: $darkerGrey;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        background-color: $lightGrey;
+        margin-left: 2vw;
+
+        &:hover {
+          background-color: $mainColor;
+          cursor: pointer;
+          color: white;
+        }
+      }
+
+      .addBtn {
+        border: 1px solid $lightGrey;
+        color: $darkerGrey;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        background-color: $lightGrey;
+        margin-left: 2vw;
+
+        &:hover {
+          background-color: $darkerGrey;
+          cursor: pointer;
+          color: white;
+        }
+      }
 
       .editBtn,
       .sortBtn {
@@ -107,29 +166,6 @@ nav {
 
         img {
           height: 4vh;
-        }
-
-        &:hover {
-          border: 1px solid $darkerGrey;
-          cursor: pointer;
-        }
-      }
-
-      .sortBtn {
-        padding: 6px;
-      }
-      .sortBtnFirst {
-        border: 1px solid $lightGrey;
-        color: $darkerGrey;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        background-color: $lightGrey;
-        margin-left: 2vw;
-
-        p {
-          text-align: center;
-          font-size: 12px;
         }
 
         &:hover {
@@ -183,18 +219,22 @@ nav {
           border: 1px solid $lightGrey;
           font-family: 'Roboto Condensed';
           font-size: 1.1em;
-
-          &:first-child {
-          }
         }
-        h4 {
-          width: 25%;
-          font-size: 1.1em;
-          text-align: center;
-        }
+      }
 
-        button {
-          margin-left: 0px;
+      .close-button {
+        border: 1px solid $darkerGrey;
+        height: 7vh;
+        display: flex;
+        align-self: center;
+        align-items: center;
+        margin: 2px -25px 0 5px;
+        background-color: $lightGrey;
+
+        &:hover {
+          background-color: $mainColor;
+          cursor: pointer;
+          color: white;
         }
       }
 
@@ -222,73 +262,5 @@ nav {
         }
       }
     }
-  }
-}
-
-.close-button {
-  border: 1px solid $darkerGrey;
-  height: 7vh;
-  display: flex;
-  align-self: center;
-  align-items: center;
-  margin: 2px -25px 0 5px;
-
-  &:hover {
-    background-color: $mainColor;
-    cursor: pointer;
-    color: white;
-  }
-}
-
-.confirmBtn {
-  border: 1px solid $lightGrey;
-  color: $darkerGrey;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  background-color: $lightGrey;
-  margin-left: 2vw;
-
-  &:hover {
-    background-color: $green;
-    cursor: pointer;
-    color: white;
-  }
-}
-
-.discardBtn {
-  border: 1px solid $lightGrey;
-  color: $darkerGrey;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  background-color: $lightGrey;
-  margin-left: 2vw;
-
-  &:hover {
-    background-color: $mainColor;
-    cursor: pointer;
-    color: white;
-  }
-}
-
-.addBtn {
-  border: 1px solid $lightGrey;
-  color: $darkerGrey;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  background-color: $lightGrey;
-  margin-left: 2vw;
-
-  &:hover {
-    background-color: $darkerGrey;
-    cursor: pointer;
-    color: white;
   }
 }

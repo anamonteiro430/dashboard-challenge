@@ -3,23 +3,18 @@ import { reducer, initialState } from './../Reducers/index';
 import { useRouteMatch } from 'react-router-dom';
 import arrowUP from './../Images/arrowUp.png';
 import createPersistedReducer from 'use-persisted-reducer';
+import { useHistory } from 'react-router-dom';
 
 export const Table = () => {
+  let history = useHistory();
   const usePersistedReducer = createPersistedReducer('data');
   const [state, dispatch] = usePersistedReducer(reducer, initialState);
-  const [edit, setEdit] = useState(false);
-  const [sortNew, setSortNew] = useState(true);
   const match = useRouteMatch();
   const { id } = match.params;
 
-  console.log('??????', state);
-  /*filter to get the current table*/
-
   useEffect(() => {
     dispatch({ type: 'getTable', payload: Number(id) });
-    console.log('STATE', state);
-    console.log(state.draft);
-  }, [state.draft, state.tables, state.table, id]);
+  }, [state.draft, state.tables, state.table, id, state.edit]);
 
   const handleChange = (event) => {
     const data = {
@@ -30,43 +25,17 @@ export const Table = () => {
     dispatch({ type: 'handleChange', payload: data });
   };
 
-  const discard = () => {
-    setEdit(false);
-    dispatch({ type: 'discard' });
-  };
-
-  const editing = () => {
-    console.log('EDIting');
-    setEdit(true);
-    dispatch({ type: 'edit', payload: id });
-  };
-
-  const confirm = () => {
-    setEdit(false);
-    dispatch({ type: 'confirm', payload: id });
-  };
-  const sortAsc = () => {
-    console.log('sorting');
-
-    setSortNew(false);
-    dispatch({ type: 'sortAsc', payload: '' });
-    console.log('NOW', state.table.content);
-  };
-
-  const newFirst = () => {
-    console.log('sorting');
-
-    setSortNew(true);
-    dispatch({ type: 'sortNew' });
-    console.log('NOW', state.table.content);
-  };
-
   return (
     <div class="table_wrapper">
+      {state.edit ? null : (
+        <button className="backBtn" onClick={() => history.push('/')}>
+          All Tables
+        </button>
+      )}
       <div class="table-action">
         {/* table information and buttons */}
         <h1>{state.table.name}</h1>
-        {edit ? (
+        {state.edit ? (
           <div className="button-wrapper">
             <button
               onClick={() => dispatch({ type: 'addButton' })}
@@ -74,24 +43,39 @@ export const Table = () => {
             >
               Add New Element
             </button>
-            <button onClick={confirm} className="confirmBtn">
+            <button
+              onClick={() => dispatch({ type: 'confirm', payload: id })}
+              className="confirmBtn"
+            >
               Confirm
             </button>
-            <button onClick={discard} className="discardBtn">
+            <button
+              onClick={() => dispatch({ type: 'discard' })}
+              className="discardBtn"
+            >
               Discard
             </button>
           </div>
         ) : (
           <div className="button-wrapper">
-            <button onClick={editing} className="editBtn">
+            <button
+              onClick={() => dispatch({ type: 'edit', payload: id })}
+              className="editBtn"
+            >
               Edit Table
             </button>
-            {sortNew ? (
-              <button onClick={sortAsc} className="sortBtn">
-                <img src={arrowUP} />
+            {state.sortNew ? (
+              <button
+                className="sortBtn"
+                onClick={() => dispatch({ type: 'sortAsc' })}
+              >
+                <img src={arrowUP} alt="sort ascendent order" />
               </button>
             ) : (
-              <button onClick={newFirst} className="sortBtnFirst">
+              <button
+                onClick={() => dispatch({ type: 'sortNew' })}
+                className="sortBtnFirst"
+              >
                 <p>New first</p>
               </button>
             )}
@@ -101,7 +85,7 @@ export const Table = () => {
       {/* table header and fields*/}
       <div id="table">
         <div class="table-header">
-          {edit
+          {state.edit
             ? state.table.fields.map((field) =>
                 field.field === 'Created' ? null : (
                   <div
@@ -124,7 +108,7 @@ export const Table = () => {
         </div>
         {/* table rows */}
         <div class="table-rows">
-          {edit ? (
+          {state.edit ? (
             /* EDITING TABLE*/
             <div>
               {state.draft.content.map((c) => (

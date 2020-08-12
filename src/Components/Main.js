@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { reducer, initialState } from './../Reducers/index';
 import { useHistory } from 'react-router-dom';
 
@@ -6,7 +6,6 @@ export const Main = () => {
   let history = useHistory();
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  console.log('MAINn');
   return (
     <div id="main">
       {state.tables.map((table) => (

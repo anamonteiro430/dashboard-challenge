@@ -5,6 +5,7 @@ import { Main } from './Components/Main';
 import { Table } from './Components/Table';
 
 function App() {
+  console.log('IN APP');
   return (
     <div className="App">
       <Nav />
